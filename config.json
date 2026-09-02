@@ -2,43 +2,30 @@
   "log": {
     "loglevel": "warning"
   },
-
   "inbounds": [
     {
       "listen": "0.0.0.0",
       "port": "env:PORT",
       "protocol": "trojan",
-
       "settings": {
         "users": [
           {
-            "password": "KOSHIBAR-TROJAN-2026",
-            "email": "koshibar@local",
-            "level": 0
+            "password": "KOSHIBAR-TROJAN-2026"
           }
         ]
       },
-
       "streamSettings": {
         "network": "ws",
         "security": "none",
-
         "wsSettings": {
           "path": "/koshibar-trojan"
         }
       }
     }
   ],
-
   "outbounds": [
     {
-      "protocol": "freedom",
-      "tag": "direct"
-    },
-
-    {
-      "protocol": "blackhole",
-      "tag": "blocked"
+      "protocol": "freedom"
     }
   ]
 }
