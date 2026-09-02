@@ -1,15 +1,7 @@
 services:
   koshibar-trojan:
-    build:
-      context: .
-      dockerfile: Dockerfile
-
-    container_name: koshibar-trojan
-
-    environment:
-      PORT: "8080"
-
+    build: .
     ports:
       - "8080:8080"
-
-    restart: unless-stopped
+    environment:
+      PORT: "8080"
