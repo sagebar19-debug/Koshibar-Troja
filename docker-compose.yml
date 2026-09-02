@@ -1,19 +1,1 @@
-services:
-  koshibar-trojan:
-    build:
-      context: .
-      dockerfile: Dockerfile
 
-    container_name: koshibar-trojan
-
-    restart: unless-stopped
-
-    ports:
-      - "443:443/tcp"
-
-    volumes:
-      - /Koshibar/100%/tls:/Koshibar/100%/tls:ro
-      - /Koshibar/100%/config:/Koshibar/100%/config:ro
-
-    environment:
-      TZ: Africa/Kinshasa
