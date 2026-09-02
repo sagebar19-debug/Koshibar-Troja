@@ -2,35 +2,43 @@
   "log": {
     "loglevel": "warning"
   },
+
   "inbounds": [
     {
       "listen": "0.0.0.0",
-      "port": 443,
+      "port": "env:PORT",
       "protocol": "trojan",
+
       "settings": {
-        "clients": [
+        "users": [
           {
-            "password": "KOSHIBAR-100"
+            "password": "KOSHIBAR-TROJAN-2026",
+            "email": "koshibar@local",
+            "level": 0
           }
         ]
       },
+
       "streamSettings": {
-        "network": "tcp",
-        "security": "tls",
-        "tlsSettings": {
-          "certificates": [
-            {
-              "certificateFile": "/Koshibar/100%/tls/fullchain.pem",
-              "keyFile": "/Koshibar/100%/tls/privkey.pem"
-            }
-          ]
+        "network": "ws",
+        "security": "none",
+
+        "wsSettings": {
+          "path": "/koshibar-trojan"
         }
       }
     }
   ],
+
   "outbounds": [
     {
-      "protocol": "freedom"
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+
+    {
+      "protocol": "blackhole",
+      "tag": "blocked"
     }
   ]
 }
