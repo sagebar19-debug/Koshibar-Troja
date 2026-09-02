@@ -1,11 +1,8 @@
 FROM ghcr.io/xtls/xray-core:26.7.28
 
-WORKDIR /etc/xray
-
-COPY config.json /etc/xray/config.json
-
-ENV PORT=8080
+COPY config.json /usr/local/etc/xray/config.json
 
 EXPOSE 8080
 
-CMD ["/usr/local/bin/xray", "run", "-config", "/etc/xray/config.json"]
+ENTRYPOINT ["/usr/local/bin/xray"]
+CMD ["run", "-config", "/usr/local/etc/xray/config.json"]
