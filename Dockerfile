@@ -1,10 +1,26 @@
-FROM v2fly/v2fly-core:latest
+FROM alpine:3.20
 
-RUN mkdir -p /Koshibar/100%/config \
-    /Koshibar/100%/tls
+ARG XRAY_VERSION=26.8.3
 
-COPY config.json /Koshibar/100%/config/config.json
+RUN apk add --no-cache \
+    ca-certificates \
+    curl \
+    unzip \
+    bash
 
-EXPOSE 443
+WORKDIR /opt/xray
 
-CMD ["run", "-c", "/Koshibar/100%/config/config.json"]
+RUN curl -L --fail \
+    "https://github.com/XTLS/Xray-core/releases/download/v${XRAY_VERSION}/Xray-linux-64.zip" \
+    -o /tmp/xray.zip \
+    && unzip /tmp/xray.zip -d /opt/xray \
+    && chmod +x /opt/xray/xray \
+    && rm -f /tmp/xray.zip
+
+COPY config.json /opt/xray/config.json
+
+ENV PORT=8080
+
+EXPOSE 8080
+
+CMD ["/opt/xray/xray", "run", "-config", "/opt/xray/config.json"]
