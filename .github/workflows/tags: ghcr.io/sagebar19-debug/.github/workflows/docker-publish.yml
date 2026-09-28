@@ -3,6 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
+      - main
       - principal
   workflow_dispatch:
 
@@ -30,4 +31,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/sagebar19-debug/koshibar-troja:latest
